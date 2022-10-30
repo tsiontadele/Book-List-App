@@ -31,10 +31,15 @@ class UI{
         <td>${book.title}</td>
         <td>${book.author}</td>
         <td>${book.isbn}</td>
-        <td><a href="#" class="btn btn-outline-danger btn-sm delet">X</td>
+        <td><a href="#" class="btn btn-outline-danger btn-sm delete">X</td>
         `
         list.appendChild(row)
     }
+    static deleteBook(targetElement) {
+        if(targetElement.classList.contains('delete')) {
+          targetElement.parentElement.parentElement.remove();
+        }
+      }
     static clearFilds(){
         document.querySelector('#title').value=''
         document.querySelector('#author').value=''
@@ -61,4 +66,9 @@ document.querySelector('#book-form').addEventListener('submit', (e) => {
 
     //clear filds
     UI.clearFilds()
-})
+}) 
+
+//Event :Remove a Book
+document.querySelector('#book-list').addEventListener('click', (e) => {
+    // Remove book from UI
+    UI.deleteBook(e.target);})
