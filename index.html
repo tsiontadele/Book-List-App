@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Book List App</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/67901ebfd8.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container mt-4">
+        <h1 class="display-1 text-center">
+            <i class="fas fa-book-open text-primary"></i>
+            My <span class="text-primary">Book</span>List
+        </h1>
+
+
+        <form class="book-form my-2">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" name="title" id="title" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="author">Author</label>
+                <input type="text" name="author" id="author" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="isbn">ISBN#</label>
+                <input type="text" name="isbn" id="isbn" class="form-control">
+            </div>
+            <button type="button" class="btn btn-outline-primary btn-block">Button 1</button>
+        </form>
+        <table class="table table-dark mt-5">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>ISBN#</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="book-list">
+
+            </tbody>
+        </table>
+
+    </div>
+<script src="app.js"></script>
+</body>
+
+</html>
