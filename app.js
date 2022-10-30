@@ -35,6 +35,11 @@ class UI{
         `
         list.appendChild(row)
     }
+    static clearFilds(){
+        document.querySelector('#title').value=''
+        document.querySelector('#author').value=''
+        document.querySelector('#isbn').value=''
+    }
 }
 
 //Event: display Books
@@ -53,4 +58,7 @@ document.querySelector('#book-form').addEventListener('submit', (e) => {
 
     // Add Book to UI
     UI.addBookToList(book);
+
+    //clear filds
+    UI.clearFilds()
 })
