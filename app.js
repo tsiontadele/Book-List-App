@@ -7,19 +7,7 @@ class Book{
 }
 class UI{
     static displayBooks(){
-        const bookList=[
-            {
-                title:"Book One",
-                author:"Jhone Doe",
-                isbn:"1234",
-            },
-            {
-                title:"Book Two",
-                author:"jane Doe",
-                isbn:"1234",
-            }
-        ]
-        const books=bookList;
+       const books=Store.getBooks()
         books.forEach(book=>{
             UI.addBookToList(book)
         })
@@ -59,7 +47,33 @@ class UI{
         document.querySelector('#isbn').value=''
     }
 }
-
+class Store{
+    static getBooks(){
+        let books;
+        if(localStorage.getItem('books')===null){
+            books=[]
+        }else{
+            books=JSON.parse(localStorage.getItem('books'))
+        }
+        return books
+    }
+    static addBook(book){
+        const books= Store.getBooks()
+        books.push(book)
+        localStorage.setItem('books',JSON.stringify(books))
+    }
+    static removeBook(isbn) {
+        const books = Store.getBooks();
+    
+        books.forEach((book, index) => {
+          if(book.isbn === isbn) {
+            books.splice(index, 1);
+          }
+        });
+    
+        localStorage.setItem('books', JSON.stringify(books));
+      }
+}
 //Event: display Books
 document.addEventListener('DOMContentLoaded', UI.displayBooks)
 
@@ -82,6 +96,9 @@ document.querySelector('#book-form').addEventListener('submit', (e) => {
 
     // Add Book to UI
     UI.addBookToList(book);
+
+    //add book to store
+    Store.addBook(book)
     UI.showAlert("Book Added","success")
     //clear filds
     UI.clearFilds()
@@ -93,5 +110,8 @@ document.querySelector('#book-form').addEventListener('submit', (e) => {
 document.querySelector('#book-list').addEventListener('click', (e) => {
     // Remove book from UI
     UI.deleteBook(e.target);
+
+    //remove book from store
+    Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
     UI.showAlert("book removed","info")
 })
